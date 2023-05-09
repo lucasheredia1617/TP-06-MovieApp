@@ -20,6 +20,7 @@ class MainViewModel(private val model: MainContract.Model) : ViewModel(), MainCo
     enum class MainStatus {
         SHOW_INFO,
         HIDE_INFO,
+        ERROR,
     }
 
     private val mutableLiveData: MutableLiveData<MainData> = MutableLiveData()
