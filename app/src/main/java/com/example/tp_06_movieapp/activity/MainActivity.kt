@@ -1,12 +1,22 @@
 package com.example.tp_06_movieapp.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.example.tp_06_movieapp.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tp_06_movieapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.buttonShowMovies.setOnClickListener {
+            val intent = Intent(this, MoviesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

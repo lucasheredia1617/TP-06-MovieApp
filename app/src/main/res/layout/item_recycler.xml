@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/container_margin"
+    android:background="@android:color/darker_gray"
+    android:elevation="@dimen/elevation"
+    tools:context=".activity.MoviesActivity"
+    style="@style/item_container"
+    >
+
+    <TextView
+        android:id="@+id/id"
+        style="@style/items_pelicula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/fecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        app:layout_constraintBottom_toTopOf="@id/imagen"
+        tools:text="ID: id" />
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/items_pelicula"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TITLE: title" />
+
+    <TextView
+        android:id="@+id/fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/items_pelicula"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        tools:text="DATE: date" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/imagen"
+        android:contentDescription="@string/image_content_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
