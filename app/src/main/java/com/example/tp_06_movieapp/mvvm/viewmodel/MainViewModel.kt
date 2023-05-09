@@ -27,7 +27,7 @@ class MainViewModel(private val model: MainContract.Model) : ViewModel(), MainCo
     override fun getValueViewModel(): LiveData<MainData> = mutableLiveData
 
     override fun callService() = viewModelScope.launch {
-        withContext(Dispatchers.IO) { model.getPopularMovies() }.let { result ->
+        withContext(Dispatchers.IO) { model.getMovies() }.let { result ->
             when (result) {
                 is CoroutineResult.Success -> {
                     mutableLiveData.value = MainData(MainStatus.SHOW_INFO, result.data)

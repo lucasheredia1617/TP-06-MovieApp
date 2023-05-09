@@ -4,11 +4,11 @@ import com.example.tp_06_movieapp.service.model.MovieList
 import com.example.tp_06_movieapp.util.CoroutineResult
 
 interface MovieService {
-    suspend fun getMovies(): CoroutineResult<MovieList>
+    suspend fun getPopularMovies(): CoroutineResult<MovieList>
 }
 
 class MovieServiceImplementation(private val client: MovieClient) : MovieService {
-    override suspend fun getMovies(): CoroutineResult<MovieList> {
+    override suspend fun getPopularMovies(): CoroutineResult<MovieList> {
         try {
             val response = client.getData().execute()
             if (response.isSuccessful) {

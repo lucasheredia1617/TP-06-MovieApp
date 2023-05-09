@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonShowMovies.setOnClickListener {
+        binding.botonMostrarPelicula.setOnClickListener {
             val intent = Intent(this, MoviesActivity::class.java)
             startActivity(intent)
             finish()

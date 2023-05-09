@@ -47,7 +47,7 @@ class TestMainModelView {
 
     @Test
     fun `if the service fails show error message`() {
-        coEvery { model.getPopularMovies() } returns CoroutineResult.Failure(Exception())
+        coEvery { model.getMovies() } returns CoroutineResult.Failure(Exception())
 
         runBlocking { viewModel.callService().join() }
 
@@ -56,7 +56,7 @@ class TestMainModelView {
 
     @Test
     fun `get the list of movies if the service call is successful`() {
-        coEvery { model.getPopularMovies() } returns CoroutineResult.Success(movieList)
+        coEvery { model.getMovies() } returns CoroutineResult.Success(movieList)
 
         runBlocking { viewModel.callService().join() }
 

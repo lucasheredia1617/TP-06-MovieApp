@@ -1,4 +1,4 @@
-package com.example.tp_06_movieapp.activity
+package com.example.tp_06_movieapp.activity // ktlint-disable package-name
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,7 @@ class MoviesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val intent = Intent(this, MainActivity::class.java)
-        with(binding.buttonBackToMain) {
+        with(binding.botonBackMain) {
             setOnClickListener {
                 startActivity(intent)
                 finish()
@@ -37,7 +37,7 @@ class MoviesActivity : AppCompatActivity() {
 
         val db: MoviesRoomDatabase by lazy {
             Room
-                .databaseBuilder(this, MoviesRoomDatabase::class.java, "Movie-DB")
+                .databaseBuilder(this, MoviesRoomDatabase::class.java, "database-movie")
                 .build()
         }
         viewModel = ViewModelProvider(
@@ -45,7 +45,7 @@ class MoviesActivity : AppCompatActivity() {
             ViewModelFactory(
                 arrayOf(
                     MainModel(
-                        MovieServiceImplementation(MovieRequestGenerator.createService(MovieClient::class.java)),
+                        MovieServiceImplementation(MovieRequestGenerator.createMovieService(MovieClient::class.java)),
                         MovieDatabaseImplementation(db.movieDao()),
                     ),
                 ),
@@ -60,15 +60,16 @@ class MoviesActivity : AppCompatActivity() {
             MainViewModel.MainStatus.SHOW_INFO -> {
                 if (data.movies.isEmpty()) {
                     binding.recycler.isVisible = false
-                    binding.failure.isVisible = true
+                    binding.error.isVisible = true
                 } else {
                     binding.recycler.layoutManager = LinearLayoutManager(this)
                     binding.recycler.adapter = MovieAdapter(data.movies)
                 }
             }
             MainViewModel.MainStatus.HIDE_INFO -> {
-                binding.failure.isVisible = true
+                binding.error.isVisible = true
             }
+            else -> { binding.error.isVisible }
         }
     }
 
