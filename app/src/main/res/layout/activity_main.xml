@@ -26,6 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/boton_mostrar_peliculas"
         android:text="@string/boton_mostrar_peliculas"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

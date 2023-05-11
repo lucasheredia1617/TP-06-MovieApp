@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.example.tp_06_movieapp.R
 import com.example.tp_06_movieapp.adapter.MovieAdapter
 import com.example.tp_06_movieapp.database.MovieDatabaseImplementation
 import com.example.tp_06_movieapp.database.MoviesRoomDatabase
@@ -18,6 +19,7 @@ import com.example.tp_06_movieapp.mvvm.viewmodel.factory.ViewModelFactory
 import com.example.tp_06_movieapp.service.MovieClient
 import com.example.tp_06_movieapp.service.MovieRequestGenerator
 import com.example.tp_06_movieapp.service.MovieServiceImplementation
+import com.example.tp_06_movieapp.util.ErrorDialogFragment
 
 class MoviesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMoviesBinding
@@ -37,7 +39,7 @@ class MoviesActivity : AppCompatActivity() {
 
         val db: MoviesRoomDatabase by lazy {
             Room
-                .databaseBuilder(this, MoviesRoomDatabase::class.java, "database-movie")
+                .databaseBuilder(this, MoviesRoomDatabase::class.java, "Movie-DB")
                 .build()
         }
         viewModel = ViewModelProvider(
@@ -45,7 +47,7 @@ class MoviesActivity : AppCompatActivity() {
             ViewModelFactory(
                 arrayOf(
                     MainModel(
-                        MovieServiceImplementation(MovieRequestGenerator.createMovieService(MovieClient::class.java)),
+                        MovieServiceImplementation(MovieRequestGenerator.createService(MovieClient::class.java)),
                         MovieDatabaseImplementation(db.movieDao()),
                     ),
                 ),
@@ -66,10 +68,11 @@ class MoviesActivity : AppCompatActivity() {
                     binding.recycler.adapter = MovieAdapter(data.movies)
                 }
             }
-            MainViewModel.MainStatus.HIDE_INFO -> {
-                binding.error.isVisible = true
-            }
-            else -> { binding.error.isVisible }
+            MainViewModel.MainStatus.ERROR -> ErrorDialogFragment.newInstance(
+                getString(R.string.titulo_dialogo),
+                getString(R.string.descripcion_dialogo),
+            ).show(supportFragmentManager, getString(R.string.error_dialog))
+            else -> {}
         }
     }
 

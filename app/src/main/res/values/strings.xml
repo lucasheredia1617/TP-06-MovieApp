@@ -11,4 +11,9 @@
     <string name="title_tp6">TP Mobile 6</string>
     <string name="boton_mostrar_peliculas">MOSTRAR</string>
     <string name="boton_atras">ATRAS</string>
+    <string name="error_dialog">Error en la base de datos</string>
+    <string name="ok">OK</string>
+    <string name="titulo_dialogo">Error</string>
+    <string name="descripcion_dialogo">Ocurrio un error en la base de datos</string>
+    <string name="boton_dialogo">OK</string>
 </resources>
